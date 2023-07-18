@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { Appwrite } from '../appwrite/appwrite_config';
 
 
 function Register() {
@@ -9,7 +8,6 @@ function Register() {
         name: "",
         email: "",
         password: "",
-        appwriteId: ""
     })
 
     const navigate = useNavigate();
@@ -21,25 +19,6 @@ function Register() {
         if (userData.name.trim() === "" || userData.email.trim() === "" || userData.password.trim() === "") {
             alert("All fields are required")
             return;
-        }
-
-        // Appwrite registration
-        try {
-            await Appwrite.account.create(
-                Appwrite.ID.unique(),
-                userData.email,
-                userData.password
-            )
-
-            await Appwrite.account.createEmailSession(userData.email, userData.password)
-
-            const resp = await Appwrite.account.get()
-
-            setUserData(userData.appwriteId = resp.$id);
-
-        } catch (error) {
-            alert(error)
-            navigate('/register');
         }
 
         await axios.post(`${BASE_URL}/api/register`, userData, {

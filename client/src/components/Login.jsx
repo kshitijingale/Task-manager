@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { Appwrite } from '../appwrite/appwrite_config';
 
 function Login() {
     const [userData, setUserData] = useState({
@@ -9,7 +9,7 @@ function Login() {
     })
     const navigate = useNavigate();
 
-    // const BASE_URL = "http://localhost:5000";
+    const BASE_URL = "http://localhost:8081";
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -18,18 +18,17 @@ function Login() {
             return;
         }
 
-        // Appwrite Login
-        try {
-            await Appwrite.account.createEmailSession(userData.email, userData.password)
 
-            await Appwrite.account.get()
-                .then((res) => {
-                    navigate('/dashboard');
-                })
-        } catch (error) {
-            alert(error)
-            navigate('/');
-        }
+        await axios.post(`${BASE_URL}/api/login`, userData, {
+            withCredentials: true,
+        })
+            .then((res) => {
+                navigate('/dashboard');
+            }).catch((err) => {
+                const errorMessage = err.response.data.message;
+                alert(errorMessage)
+                navigate('/register');
+            })
 
         // Reset values
         setUserData({

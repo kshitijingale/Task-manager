@@ -4,7 +4,7 @@ import axios from 'axios';
 import up from '../assets/buttons/up-arrow.png'
 import down from '../assets/buttons/down-arrow.png'
 
-function Todo({ todo, deleteTodo, editTodo, BASE_URL, appwriteId }) {
+function Todo({ todo, deleteTodo, editTodo, BASE_URL }) {
     const [title, setTitle] = useState(todo.title)
     const [task, setTask] = useState('')
     const [tasks, setTasks] = useState([])
@@ -40,26 +40,24 @@ function Todo({ todo, deleteTodo, editTodo, BASE_URL, appwriteId }) {
 
     const createTodoTask = async () => {
         if (task.trim() === '') {
-            alert("Task field cannot be empty")
+            alert("Todo field cannot be empty")
             return
         }
         await axios.post(`${BASE_URL}/createTodoTask/${todo._id}`, {
             task: task,
-            appwriteId
         })
         setTask('')
         getTodoTasks();
     }
 
     const getTodoTasks = async () => {
-        const res = await axios.get(`${BASE_URL}/getTodoTasks/${appwriteId}&${todo._id}`)
+        const res = await axios.get(`${BASE_URL}/getTodoTasks/${todo._id}`)
         setTasks(res.data.tasks)
     }
 
     const deleteTodoTask = async (index) => {
         await axios.put(`${BASE_URL}/deleteTodoTask/${todo._id}`, {
-            taskIndex: index,
-            appwriteId
+            taskIndex: index
         })
         getTodoTasks();
     }
@@ -68,7 +66,6 @@ function Todo({ todo, deleteTodo, editTodo, BASE_URL, appwriteId }) {
         await axios.put(`${BASE_URL}/editTodoTask/${todo._id}`, {
             taskIndex: index,
             editedTask,
-            appwriteId
         })
         getTodoTasks();
     }
@@ -108,7 +105,7 @@ function Todo({ todo, deleteTodo, editTodo, BASE_URL, appwriteId }) {
                             })
                         }
                         <div className='flex justify-center gap-[15px] item-center my-[10px]'>
-                            <input value={task} onKeyDown={(e) => inputHandler(e)} onChange={(e) => setTask(e.target.value)} type='text' className='border px-[20px] focus:outline-none' placeholder='Create a task' />
+                            <input value={task} onKeyDown={(e) => inputHandler(e)} onChange={(e) => setTask(e.target.value)} type='text' className='border px-[20px] focus:outline-none' placeholder='Create a todo' />
                             <button onClick={createTodoTask} className='bg-[#000] text-[#fff] h-[30px] w-[30px] rounded-[50%] border border-transparent hover:border-[#000] hover:text-[#000] hover:bg-[#fff]'>+</button>
                         </div>
                     </div>
