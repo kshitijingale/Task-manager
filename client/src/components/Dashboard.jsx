@@ -11,12 +11,14 @@ function App() {
     const navigate = useNavigate();
 
 
-    const BASE_URL = "https://task-manager-production-b98f.up.railway.app";
+    const BASE_URL = "https://task-manager-kshitij.up.railway.app";
     axios.defaults.withCredentials = true
 
     // Fetch all Todos
     const getTodos = async () => {
-        await axios.get(`${BASE_URL}/getTodos`)
+        await axios.get(`${BASE_URL}/getTodos`, {
+            withCredentials: true
+        })
             .then((res) => {
                 const todosData = res.data.todos;
                 // Sorting the todos based on created date

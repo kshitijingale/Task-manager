@@ -9,7 +9,8 @@ function Login() {
     })
     const navigate = useNavigate();
 
-    const BASE_URL = "https://task-manager-production-b98f.up.railway.app";
+    const BASE_URL = "https://task-manager-kshitij.up.railway.app";
+    // const BASE_URL = "http://localhost:8081";
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -23,6 +24,7 @@ function Login() {
             withCredentials: true,
         })
             .then((res) => {
+                console.log(res.data)
                 navigate('/dashboard');
             }).catch((err) => {
                 const errorMessage = err.response.data.message;
