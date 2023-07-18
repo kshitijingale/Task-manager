@@ -16,9 +16,7 @@ function App() {
 
     // Fetch all Todos
     const getTodos = async () => {
-        await axios.get(`${BASE_URL}/getTodos`, {
-            withCredentials: true,
-        })
+        await axios.get(`${BASE_URL}/getTodos`)
             .then((res) => {
                 const todosData = res.data.todos;
                 // Sorting the todos based on created date
