@@ -11,7 +11,7 @@ function App() {
     const navigate = useNavigate();
 
 
-    const BASE_URL = "http://localhost:8081";
+    const BASE_URL = "https://task-manager-production-b98f.up.railway.app";
     axios.defaults.withCredentials = true
 
     // Fetch all Todos
