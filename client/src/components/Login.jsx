@@ -10,7 +10,6 @@ function Login() {
     const navigate = useNavigate();
 
     const BASE_URL = "https://task-manager-kshitij.up.railway.app";
-    // const BASE_URL = "http://localhost:8081";
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -23,8 +22,8 @@ function Login() {
         await axios.post(`${BASE_URL}/api/login`, userData, {
             withCredentials: true,
         })
-            .then((res) => {
-                console.log(res.data)
+            .then(async (res) => {
+                document.cookie = `token=${res.data.token}`
                 navigate('/dashboard');
             }).catch((err) => {
                 const errorMessage = err.response.data.message;
