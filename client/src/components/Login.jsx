@@ -9,7 +9,7 @@ function Login() {
     })
     const navigate = useNavigate();
 
-    const BASE_URL = "http://localhost:8081";
+    const BASE_URL = "https://task-manager-production-b98f.up.railway.app";
 
     const handleSubmit = async (e) => {
         e.preventDefault();
