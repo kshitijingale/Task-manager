@@ -25,6 +25,7 @@ function Register() {
             withCredentials: true,
         })
             .then((res) => {
+                localStorage.setItem('token', res.data.token)
                 navigate('/dashboard');
             }).catch((err) => {
                 const errorMessage = err.response.data.message;

@@ -23,7 +23,7 @@ function Login() {
             withCredentials: true,
         })
             .then(async (res) => {
-                document.cookie = `token=${res.data.token}`
+                localStorage.setItem('token', res.data.token)
                 navigate('/dashboard');
             }).catch((err) => {
                 const errorMessage = err.response.data.message;

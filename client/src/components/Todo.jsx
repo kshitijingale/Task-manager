@@ -3,12 +3,15 @@ import Task from './Task';
 import axios from 'axios';
 import up from '../assets/buttons/up-arrow.png'
 import down from '../assets/buttons/down-arrow.png'
+import { isAuthenticated } from '../Auth/isAuthenticated';
 
-function Todo({ todo, deleteTodo, editTodo, BASE_URL }) {
+function Todo({ todo, deleteTodo, editTodo, BASE_URL, }) {
     const [title, setTitle] = useState(todo.title)
     const [task, setTask] = useState('')
     const [tasks, setTasks] = useState([])
     const [menu, setMenu] = useState(false)
+
+    const token = isAuthenticated()
 
     const editTitle = () => {
         const todoElement = document.activeElement.parentElement;
@@ -45,19 +48,38 @@ function Todo({ todo, deleteTodo, editTodo, BASE_URL }) {
         }
         await axios.post(`${BASE_URL}/createTodoTask/${todo._id}`, {
             task: task,
+        }, {
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
         })
         setTask('')
         getTodoTasks();
     }
 
     const getTodoTasks = async () => {
-        const res = await axios.get(`${BASE_URL}/getTodoTasks/${todo._id}`)
+
+        const res = await axios.get(`${BASE_URL}/getTodoTasks/${todo._id}`, {
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        })
         setTasks(res.data.tasks)
     }
 
     const deleteTodoTask = async (index) => {
         await axios.put(`${BASE_URL}/deleteTodoTask/${todo._id}`, {
             taskIndex: index
+        }, {
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
         })
         getTodoTasks();
     }
@@ -66,6 +88,12 @@ function Todo({ todo, deleteTodo, editTodo, BASE_URL }) {
         await axios.put(`${BASE_URL}/editTodoTask/${todo._id}`, {
             taskIndex: index,
             editedTask,
+        }, {
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
         })
         getTodoTasks();
     }

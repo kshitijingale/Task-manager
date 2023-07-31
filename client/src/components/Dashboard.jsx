@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Todo from '../components/Todo';
 import { useNavigate } from 'react-router-dom';
+import { isAuthenticated } from '../Auth/isAuthenticated';
 
 function App() {
     const [todoTitle, setTodoTitle] = useState('')
@@ -10,14 +11,22 @@ function App() {
     const [search, setSearch] = useState(false)
     const navigate = useNavigate();
 
-
     const BASE_URL = "https://task-manager-kshitij.up.railway.app";
+    // const BASE_URL = "http://localhost:8081";
     axios.defaults.withCredentials = true
+
+
+    const token = isAuthenticated()
 
     // Fetch all Todos
     const getTodos = async () => {
+
         await axios.get(`${BASE_URL}/getTodos`, {
-            withCredentials: true
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
         })
             .then((res) => {
                 const todosData = res.data.todos;
@@ -38,13 +47,19 @@ function App() {
 
     // create Todo
     const handleSubmit = async () => {
+
         if (todoTitle.trim() === '') {
             alert("Title field cannot be empty")
             return;
         }
-        await axios.post(`${BASE_URL}/createTodo`, {
-            title: todoTitle
-        })
+        await axios.post(`${BASE_URL}/createTodo`, { title: todoTitle },
+            {
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                }
+            })
         // reset value
         setTodoTitle('')
         getTodos();
@@ -52,15 +67,29 @@ function App() {
 
     // Delete Todo
     const deleteTodo = async (id) => {
-        await axios.delete(`${BASE_URL}/deleteTodo/${id}`)
+
+        await axios.delete(`${BASE_URL}/deleteTodo/${id}`, {
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        })
         setSearch(false)
         getTodos();
     }
 
     // Edit Todo
     const editTodo = async (id, title) => {
+
         await axios.put(`${BASE_URL}/editTodo/${id}`, {
             title: title
+        }, {
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
         })
         setSearch(false)
         getTodos();
@@ -78,12 +107,18 @@ function App() {
 
     // Search Todo
     const handleSearch = async () => {
+
         if (searchText.trim() === "") {
             alert("Cannot be empty")
             return;
         }
-
-        const res = await axios.post(`${BASE_URL}/api/searchTodos/${searchText}`)
+        const res = await axios.post(`${BASE_URL}/api/searchTodos/${searchText}`, {}, {
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        })
         setTodos(res.data.todos);
         setSearch(true);
 
@@ -99,6 +134,7 @@ function App() {
 
     // Logout User
     const handleLogout = async () => {
+        localStorage.removeItem('token')
         await axios.get(`${BASE_URL}/api/logout`).then((res) => {
             alert('Logged out successfully')
             navigate('/')
@@ -111,7 +147,7 @@ function App() {
     return (
         <div className='mx-auto w-[440px] flex align-center flex-col my-[20px] px-[10px]'>
             <div className='flex justify-between items-center mb-[20px]'>
-                <h1 className='text-[40px] text-center '>🎯 Task Manager </h1>
+                <h1 className='text-[40px] text-center '>🎯 TaskBuddy </h1>
                 <button onClick={handleLogout} className='text-white p-[6px] bg-[#000000] border border-transparent focus:outline-none hover:bg-transparent hover:text-black hover:border-black rounded'>Logout</button>
             </div>
             {

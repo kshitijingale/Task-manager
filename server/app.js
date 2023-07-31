@@ -9,7 +9,7 @@ require('./config/db').connect();
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
-app.use(cors({ credentials: true, origin: ['https://task-manager-kshitij.vercel.app', 'http://localhost:3000'], exposedHeaders: ['set-cookie'], }));
+app.use(cors({ credentials: true, origin: ['https://task-manager-kshitij.vercel.app', 'http://localhost:3000'] }));
 
 
 app.use('/', routes)
