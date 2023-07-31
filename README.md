@@ -12,10 +12,4 @@
 
  **Frontend Deployment** : [Vercel](https://vercel.com/)
 
- **Time Taken** = 40 hours
-
- **Screenshots :**
-
- ![ss1](src/assets/SS/1.png)
-
- ![ss2](src/assets/SS/2.png)
+ **Time Taken** = 50 hours
