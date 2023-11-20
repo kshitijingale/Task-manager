@@ -11,7 +11,7 @@ function App() {
     const [search, setSearch] = useState(false)
     const navigate = useNavigate();
 
-    const BASE_URL = "https://task-manager-kshitij.up.railway.app";
+    const BASE_URL = "https://taskbuddy-fzfd.onrender.com";
     // const BASE_URL = "http://localhost:8081";
     axios.defaults.withCredentials = true
 

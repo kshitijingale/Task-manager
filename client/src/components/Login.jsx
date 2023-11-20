@@ -9,7 +9,7 @@ function Login() {
     })
     const navigate = useNavigate();
 
-    const BASE_URL = "https://task-manager-kshitij.up.railway.app";
+    const BASE_URL = "https://taskbuddy-fzfd.onrender.com";
 
     const handleSubmit = async (e) => {
         e.preventDefault();

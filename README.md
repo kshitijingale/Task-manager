@@ -8,7 +8,7 @@
 
  **Tech Stack** : React, Tailwindcss, Nodejs, Expressjs, MongoDB.
 
- **Backend Deployment** : [Railway](https://railway.app/)
+ **Backend Deployment** : [Render](https://render.com/)
 
  **Frontend Deployment** : [Vercel](https://vercel.com/)
 
