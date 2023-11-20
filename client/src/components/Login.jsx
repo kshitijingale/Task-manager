@@ -47,15 +47,28 @@ function Login() {
     }
 
     return (
-        <div className='mx-auto w-[440px] flex align-center flex-col my-[20px] px-[10px]'>
-            <h1 className='text-[40px] text-center mb-[20px]'>Login</h1>
-            <form className='flex flex-col gap-[20px] max-w-[400px]' onSubmit={handleSubmit}>
-                <input name='email' value={userData.email} onChange={handleInput} className='focus:outline-none p-[6px] border border-[#000] rounded' type='email' placeholder='Enter your email' />
-                <input name='password' value={userData.password} onChange={handleInput} className='focus:outline-none p-[6px] border border-[#000] rounded' type='password' placeholder='Enter your password' />
-                <button type='submit' className="text-white text-[20px] bg-[#000000] border border-transparent py-1 px-6 focus:outline-none hover:bg-transparent hover:text-black hover:border-black rounded">Login</button>
-                <button onClick={toRegister} className="text-[#000] text-[20px] bg-transparent border border-[#000] py-1 px-6 focus:outline-none hover:bg-[#000] hover:text-[#fff] hover:border-transparent rounded">Don't have an account</button>
-            </form>
+        <div className="bg-gradient-to-r from-blue-500 to-indigo-600 min-h-screen flex items-center justify-center">
+            <div className="md:max-w-md md:w-full w-3/4  p-6 bg-white rounded-md shadow-md">
+                <h2 className="text-3xl md:text-4xl font-bold  mb-6">🎯 TaskBuddy </h2>
+                <form onSubmit={handleSubmit}>
+                    <div className="mb-4">
+                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">Email</label>
+                        <input className="border border-gray-300 rounded-md py-2 px-3 w-full focus:outline-none focus:border-indigo-500" type="email" value={userData.email} id="email" name="email" onChange={handleInput} placeholder="Enter your email" />
+                    </div>
+                    <div className="mb-4">
+                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">Password</label>
+                        <input value={userData.password} onChange={handleInput} className="border border-gray-300 rounded-md py-2 px-3 w-full focus:outline-none focus:border-indigo-500" type="password" id="password" name="password" placeholder="Enter your password" />
+                    </div>
+                    <button type="submit" className="bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-600 focus:outline-none focus:shadow-outline-indigo">Log In</button>
+                </form>
+                <p className="text-gray-600 text-sm mt-2">
+                    Demo Email: demo@example.com <br />
+                    Demo Password: demo123
+                </p>
+                <button onClick={toRegister} className="text-indigo-500 mt-4 block">Don't have an account</button>
+            </div>
         </div>
+
     )
 }
 export default Login

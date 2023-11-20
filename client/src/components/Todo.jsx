@@ -106,7 +106,7 @@ function Todo({ todo, deleteTodo, editTodo, BASE_URL, }) {
 
     return (
         <>
-            <div className='w-[100%] flex justify-around bg-[#e1e1e1] mt-[10px] py-[5px] rounded'>
+            <div className='w-[100%] flex justify-around bg-white mt-[10px] py-[5px] rounded'>
                 <input value={title} onChange={(e) => setTitle(e.target.value)} disabled className='bg-transparent font-semibold text-[20px] focus:bg-[#fff] focus:outline-none rounded px-[5px]' />
                 <button onClick={editTitle} className='text-blue-500 hover:text-blue-700'>Edit</button>
                 <button onClick={saveTitle} className='text-blue-500 hover:text-blue-700 hidden'>Save</button>
@@ -126,7 +126,7 @@ function Todo({ todo, deleteTodo, editTodo, BASE_URL, }) {
             </div >
             {
                 (menu === true) ? (
-                    <div className='border rounded'>
+                    <div className='border rounded bg-white'>
                         {
                             tasks && tasks.map((task, index) => {
                                 return <Task key={task} task={task} index={index} deleteTodoTask={deleteTodoTask} editTodoTask={editTodoTask} />
