@@ -61,8 +61,8 @@ function Register() {
                     <button onClick={toLogin} className="text-[#000] text-[20px] bg-transparent border border-[#000] py-1 px-6 focus:outline-none hover:bg-[#000] hover:text-[#fff] hover:border-transparent rounded">Already have an account</button>
                 </form>
             </div> */}
-            <div className="bg-gradient-to-r from-blue-500 to-indigo-600 min-h-screen flex items-center justify-center">
-                <div className="md:max-w-md md:w-full w-3/4  p-6 bg-white rounded-md shadow-md">
+            <div className="bg-gradient-to-r from-blue-500 to-indigo-600 min-h-screen flex pt-40 sm:pt-0 sm:items-center justify-center">
+                <div className="md:max-w-md md:w-full w-[90%] p-6 bg-white rounded-md shadow-md h-max">
                     <h2 className="text-3xl md:text-4xl font-bold mb-6">🎯 TaskBuddy </h2>
                     <form onSubmit={handleSubmit}>
                         <div className="mb-4">
