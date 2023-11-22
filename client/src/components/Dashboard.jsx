@@ -171,9 +171,9 @@ function App() {
                         <>
 
                             <div className='flex justify-center gap-3 sm:mt-6 mb-[40px]'>
-                                <input value={todoTitle} onKeyDown={(e) => inputHandler(e)} onChange={(e) => setTodoTitle(e.target.value)} placeholder='Create a Task list.....' className='bg-transparent text-[20px] border border-black focus:outline-none 
-              pl-[8px] rounded placeholder:text-black' />
-                                <button onClick={handleSubmit} className="text-white text-[20px] bg-[#000000] border border-transparent py-1 px-6 focus:outline-none hover:bg-transparent hover:text-black hover:border-black rounded">Create</button>
+                                <input value={todoTitle} onKeyDown={(e) => inputHandler(e)} onChange={(e) => setTodoTitle(e.target.value)} placeholder='Create a Task list.....' className='bg-transparent text-[18px] sm:text-[20px] border border-black focus:outline-none 
+                                pl-[8px] rounded placeholder:text-black' />
+                                <button onClick={handleSubmit} className="text-white text-[18px] sm:text-[20px] bg-[#000000] border border-transparent py-0 px-3 sm:px-6 sm:py-1 focus:outline-none hover:bg-transparent hover:text-black hover:border-black rounded">Create</button>
                             </div>
                         </>
                     )

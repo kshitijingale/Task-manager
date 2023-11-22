@@ -107,8 +107,8 @@ function Todo({ todo, deleteTodo, editTodo, BASE_URL, }) {
     return (
         <>
             <div className='w-[100%] flex justify-around bg-white mt-[10px] py-[5px] rounded'>
-                <input value={title} onChange={(e) => setTitle(e.target.value)} disabled className='bg-transparent font-semibold text-[20px] focus:bg-[#fff] focus:outline-none rounded px-[5px]' />
-                <button onClick={editTitle} className='text-blue-500 hover:text-blue-700'>Edit</button>
+                <input value={title} onChange={(e) => setTitle(e.target.value)} disabled className='bg-transparent font-semibold text-[16px] sm:text-[20px] focus:bg-[#fff] focus:outline-none rounded px-[5px]' />
+                <button onClick={editTitle} className='text-blue-500 hover:text-blue-700 '>Edit</button>
                 <button onClick={saveTitle} className='text-blue-500 hover:text-blue-700 hidden'>Save</button>
                 <button onClick={() => deleteTodo(todo._id)} className='text-red-500 hover:text-red-800'>Delete</button>
                 <span onClick={() => {
@@ -117,9 +117,9 @@ function Todo({ todo, deleteTodo, editTodo, BASE_URL, }) {
                 }} className='cursor-pointer hover:bg-[#c4c4c4] rounded-[50%] w-[30px] text-center flex items-center justify-center'>
                     {
                         (menu === true) ? (
-                            <img className='w-[16px] h-[16px]' src={up} alt='up-img' />
+                            <img className='w-[12px] sm:w-[16px] h-[12px] sm:h-[16px]' src={up} alt='up-img' />
                         ) : (
-                            <img className='w-[16px] h-[16px]' src={down} alt='down-img' />
+                            <img className='w-[12px] sm:w-[16px] h-[12px] sm:h-[16px]' src={down} alt='down-img' />
                         )
                     }
                 </span>
